@@ -1,0 +1,24 @@
+version: '3'
+services:
+  api:
+    container_name: api
+    build: .
+    volumes:
+      - .:/src
+      - nodemodules:/src/node_modules
+    ports:
+      - 3004:3004
+      - 3006:3006
+    restart: always
+    links:
+      - mongo
+  mongo:
+    container_name: mongo
+    image: mongo
+    volumes:
+      - ./data:/data/db
+    ports:
+      - '27018:27017'
+
+volumes:
+  nodemodules: {}
