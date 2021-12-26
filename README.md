@@ -1,10 +1,11 @@
 ## Firma
 
-### About
-
 <p align="center" >
 <img src="https://raw.githubusercontent.com/lesimoes/firma-frontend/main/src/assets/logo.png" width="200" height="120"/>
 </p>
+
+
+### About
 
 This is a backend for Firma Project.
 
