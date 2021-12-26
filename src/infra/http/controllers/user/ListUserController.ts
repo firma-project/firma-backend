@@ -1,17 +1,21 @@
-import { Request, Response } from "express";
+import { HttpRequest, HttpResponse} from '../../protocols/Http';
 import { Controller } from "../../protocols";
 import userSchema from '../../../schemas/UserSchema';
 import { ListUser } from "../../../../application/use-cases/user/ListUser";
+import { HttpStatusCode } from '../../utils/HttpEnum';
 
 export class ListUserController implements Controller {
     
-    async handle(req: Request, res: Response) {
+    async handle(): Promise<HttpResponse> {
 
         const userRepository = userSchema;
         const useCase = new ListUser(userRepository);
         
         const users = await useCase.execute();
-        return res.send(users);
+        return {
+            statusCode: HttpStatusCode.OK,
+            body: users,
+        }
     }
     
 

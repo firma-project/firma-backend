@@ -1,5 +1,5 @@
-import { Request, Response } from 'express';
+import { HttpRequest, HttpResponse } from './Http';
 
 export interface Controller {
-    handle (req: Request, res: Response): Promise<Response>
+    handle (req?: HttpRequest): Promise<HttpResponse>
 }

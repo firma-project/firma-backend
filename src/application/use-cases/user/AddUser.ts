@@ -11,7 +11,7 @@ export class AddUser {
     async execute (user: User) {
 
         const searchedUser = await this.userRepository.findByEmail(user.email);
-        console.log(searchedUser)
+  
         if (searchedUser) {
             return this.userRepository.update(user);
         }

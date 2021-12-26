@@ -1,16 +1,21 @@
-import { Request, Response } from 'express';
+import { HttpRequest, HttpResponse} from '../../protocols/Http';
 import { Controller } from '../../protocols/Controller';
 import voteSchema from '../../../schemas/VoteSchema';
 import { ListVote } from '../../../../application/use-cases/vote/ListVote';
+import { HttpStatusCode } from '../../utils/HttpEnum';
 
 export class ListVoteController implements Controller {
-    async handle (req: Request, res: Response) {
+
+    async handle (req: HttpRequest): Promise<HttpResponse> {
         const voteRepository = voteSchema;
         const useCase = new ListVote(voteRepository);
         
         const votes = useCase.execute();
 
-       return res.send(votes)
+        return {
+            statusCode: HttpStatusCode.OK,
+            body: votes,
+        }
     }
 
 }

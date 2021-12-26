@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { HttpRequest, HttpResponse} from '../../protocols/Http';
 import { Controller } from "../../protocols";
 import { AddUser } from '../../../../application/use-cases/user/AddUser';
 import { UserFactory } from "../../../../domain/user/UserFactory";
@@ -8,11 +8,13 @@ import { HttpStatusCode } from '../../utils/HttpEnum';
 
 export class AddUserController implements Controller {
     
-    async handle(req: Request, res: Response) {
+    async handle(req: HttpRequest): Promise<HttpResponse> {
 
         const { error } = await addUserValidation.validate(req.body)
         if (error) {
-            return res.sendStatus(HttpStatusCode.BAD_REQUEST);
+            return {
+                statusCode: HttpStatusCode.BAD_REQUEST,
+            }
         }
 
         const user = UserFactory.create(req.body);
@@ -21,7 +23,10 @@ export class AddUserController implements Controller {
         
         useCase.execute(user);
 
-        return res.status(HttpStatusCode.OK).send('user created');
+        return {
+            statusCode: HttpStatusCode.OK,
+            body: 'user created',
+        }
     }
     
 
