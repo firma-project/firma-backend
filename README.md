@@ -4,7 +4,7 @@
 
 This is a backend for Firma Project.
 
-The Firma project is yet another corporate piece of software to engage employees to collaborate with others. Employees could vote for each other for each aid they received.
+The Firma project is another corporate piece of software to engage employees to collaborate with others. Employees could vote for each other and exchange their votes for coins. Coins could be used in The Store, where employees could by-products or "love cards". Love cards are donated for charity institutions
 
 
 ### Technologies Used
