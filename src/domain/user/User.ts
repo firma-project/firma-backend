@@ -1,13 +1,25 @@
 export class User {
-    private id?: string;
-    private name: string;
-    private role: string;
+    id?: string;
+    name: string;
+    email: string;
+    profile: string;
+    uid?: string;
+    sessionToken?: string;
 
-    constructor (name: string, role: string, id?: string) {
+    constructor (
+        name: string,
+        email: string,
+        profile: string,
+        uid?: string,
+        sessionToken?: string,
+        id?: string,
+        ) {
         this.id = id;
         this.name = name;
-        this.role = role;
+        this.email = email;
+        this.profile = profile;
+        this.uid = uid;
+        this.sessionToken = sessionToken;
     }
-
   
 }

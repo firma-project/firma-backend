@@ -9,6 +9,12 @@ export class AddUser {
     }
 
     async execute (user: User) {
-        this.userRepository.add(user);  
+
+        const searchedUser = await this.userRepository.findByEmail(user.email);
+        console.log(searchedUser)
+        if (searchedUser) {
+            return this.userRepository.update(user);
+        }
+        return this.userRepository.add(user);  
     }
 }

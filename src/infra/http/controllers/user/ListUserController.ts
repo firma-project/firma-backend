@@ -11,7 +11,6 @@ export class ListUserController implements Controller {
         const useCase = new ListUser(userRepository);
         
         const users = await useCase.execute();
-        console.log(users)
         return res.send(users);
     }
     
