@@ -7,9 +7,9 @@
     "test": "NODE_ENV=test npx jest -i",
     "test:watch": "NODE_ENV=test npx jest --watchAll -i",
     "build": "NODE_ENV=production npx tsc --outDir dist",
-    "start": "NODE_ENV=production NODE_TLS_REJECT_UNAUTHORIZED=0 node dist/server.js",
+    "start": "NODE_ENV=production NODE_TLS_REJECT_UNAUTHORIZED=0 node dist/infra/http/server.js",
+    "prod": "NODE_ENV=production npx nodemon --ignore './data' --watch \"src/**\" --ext \"ts,json\" --exec \"ts-node src/infra/http/server.ts\"",
     "dev": "NODE_ENV=development npx nodemon --ignore './data' --watch \"src/**\" --ext \"ts,json\" --exec \"ts-node src/infra/http/server.ts\"",
-    "typeorm": "ts-node ./node_modules/typeorm/cli",
     "lint": "eslint . --ext .ts"
   },
   "devDependencies": {
