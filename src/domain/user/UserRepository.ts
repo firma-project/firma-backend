@@ -1,8 +1,9 @@
 import { User } from "./User";
+import { IUser } from "./IUser";
 
 export interface UserRepository {
-    add(user: User): Promise<User>;
-    list(): Promise<User[]>;
-    findByEmail(email: string): Promise<User>
-    update(user: User): Promise<User>;
+    add(user: User): Promise<IUser>;
+    list(): Promise<IUser[]>;
+    findByEmail(email: string): Promise<IUser>
+    update(user: User): Promise<IUser>;
 }

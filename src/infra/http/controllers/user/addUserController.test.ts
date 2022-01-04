@@ -22,13 +22,11 @@ const mockRequestInvalid: HttpRequest = {
     }
 }
 
-const mockUser: User = {
+const mockUser = UserFactory.create({
     name: faker.name.firstName(),
     email: faker.internet.email(),
     profile: faker.internet.url(),
-    uid: faker.datatype.uuid(),
-    sessionToken: faker.datatype.uuid(),
-}
+})
 
 const sut = new AddUserController();
 

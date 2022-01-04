@@ -10,7 +10,6 @@ export class ListUser {
 
     async execute () {
         const users = await this.userRepository.list();
-        console.log(users[0])
         return users.map(user => user.getUser()); 
     }
 }

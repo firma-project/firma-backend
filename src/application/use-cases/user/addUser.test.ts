@@ -2,19 +2,20 @@ import faker from 'faker';
 import { AddUser } from './AddUser';
 import { UserRepository } from '../../../domain/user/UserRepository';
 import { User } from '../../../domain/user/User';
+import { IUser } from '../../../domain/user/IUser';
+import { UserFactory } from '../../../domain/user/UserFactory';
 
-
-const mockUsers: User[] = [
-    {
+const mockUsers: IUser[] = [
+    UserFactory.create({
         name: faker.name.firstName(),
         email: faker.internet.email(),
         profile: faker.internet.url(),
-    },
-    {
+    }),
+    UserFactory.create({
         name: faker.name.firstName(),
         email: faker.internet.email(),
         profile: faker.internet.url(),
-    }
+    })
 ]
 
 const mockUserRepository: UserRepository = {
@@ -49,11 +50,11 @@ describe('UseCases: Add User', () => {
 
     it('Should return a new user', async () => {
 
-        const mockUser = {
+        const mockUser = UserFactory.create({
             name: faker.name.firstName(),
             email: faker.internet.email(),
             profile: faker.internet.url(),
-        }
+        })
         const sut = new AddUser(mockUserRepository);
         const newUser = await sut.execute(mockUser);
         expect(newUser.name).toBe(mockUser.name);
