@@ -2,20 +2,22 @@ import faker from 'faker';
 import { ListUser } from './ListUser';
 import { UserRepository } from '../../../domain/user/UserRepository';
 import { User } from '../../../domain/user/User';
+import { IUser } from '../../../domain/user/IUser';
+import { UserFactory } from '../../../domain/user/UserFactory';
 
-
-const mockUsers: User[] = [
-    {
+const mockUsers: IUser[] = [
+    UserFactory.create({
         name: faker.name.firstName(),
         email: faker.internet.email(),
         profile: faker.internet.url(),
-    },
-    {
+    }),
+    UserFactory.create({
         name: faker.name.firstName(),
         email: faker.internet.email(),
         profile: faker.internet.url(),
-    }
+    })
 ]
+
 
 const mockUserRepository: UserRepository = {
     add: function (user: User): Promise<User> {

@@ -1,7 +1,8 @@
-import { Schema, model, Model } from "mongoose";
+import { Schema, model, Model, Document } from "mongoose";
 import { User } from "../../domain/user/User";
 import { UserRepository } from "../../domain/user/UserRepository";
-
+import { UserFactory } from "../../domain/user/UserFactory";
+import { IUser } from "../../domain/user/IUser";
 
 class UserSchema implements UserRepository {
 
@@ -10,35 +11,41 @@ class UserSchema implements UserRepository {
 
     constructor () {
         this.schema = new Schema({
-            name: String,
+            name: String,   
             email: String,
             profile: String,
             uid: String,
             sessionToken: String,
         })
-        this.User = model('User', this.schema);
+        this.User = model<User>('User', this.schema);
     }
 
-    add(user: User): Promise<User> {
-        return this.User.create(user);
-    }
-    list(): Promise<User[]> {
-        return this.User.find().exec();
+    async add(user: User): Promise<IUser> {
+        const addedUser = await this.User.create(user); 
+        return UserFactory.create(addedUser);
     }
 
-    findByEmail(email: string): Promise<User> {
+    async list(): Promise<IUser[]> {
+        const users = await this.User.find().exec();
+        return users.map(user => UserFactory.create(user));
+    }
+
+    async findByEmail(email: string): Promise<IUser> {
      
-        return this.User.findOne({
+        const newUser = await this.User.findOne({
             email,
-        }).exec();
+        }).exec(); 
+
+        return UserFactory.create(newUser);
     }
 
-    async update(user: User): Promise<User> {
+    async update(user: User): Promise<IUser> {
         const document = await this.User.findOne({
             email: user.email,
         });
 
-        return document.updateOne(user);
+        const updatedUser = await document.updateOne(user);
+        return UserFactory.create(updatedUser);
     }
     
 }

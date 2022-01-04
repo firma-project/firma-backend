@@ -9,6 +9,7 @@ export class ListUser {
     }
 
     async execute () {
-        return this.userRepository.list(); 
+        const users = await this.userRepository.list();
+        return users.map(user => user.getUser()); 
     }
 }
