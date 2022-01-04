@@ -2,4 +2,3 @@ node_modules
 data
 coverage
 .env
-.env.dev

@@ -21,5 +21,14 @@ export class User {
         this.uid = uid;
         this.sessionToken = sessionToken;
     }
+
+    getUser () {
+        return {
+            id: this.id,
+            name: this.name,
+            email: this.email,
+            profile: this.profile,
+        }
+    }
   
 }
