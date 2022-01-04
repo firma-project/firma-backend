@@ -10,7 +10,8 @@
     "start": "NODE_ENV=production NODE_TLS_REJECT_UNAUTHORIZED=0 node dist/infra/http/server.js",
     "prod": "NODE_ENV=production npx nodemon --ignore './data' --watch \"src/**\" --ext \"ts,json\" --exec \"ts-node src/infra/http/server.ts\"",
     "dev": "NODE_ENV=development npx nodemon --ignore './data' --watch \"src/**\" --ext \"ts,json\" --exec \"ts-node src/infra/http/server.ts\"",
-    "lint": "eslint . --ext .ts"
+    "lint": "eslint . --ext .ts -f ./eslint-formatter.js",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",
@@ -24,8 +25,10 @@
     "@types/supertest": "^2.0.11",
     "@typescript-eslint/eslint-plugin": "^5.8.0",
     "@typescript-eslint/parser": "^5.8.0",
+    "chalk": "^5.0.0",
     "eslint": "^8.5.0",
     "faker": "^5.5.3",
+    "husky": "^7.0.4",
     "jest": "^27.0.6",
     "nodemon": "^2.0.12",
     "supertest": "^6.1.3",
