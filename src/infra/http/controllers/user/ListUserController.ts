@@ -1,4 +1,4 @@
-import { HttpRequest, HttpResponse} from '../../protocols/Http';
+import { HttpResponse } from '../../protocols/Http';
 import { Controller } from "../../protocols";
 import userSchema from '../../../schemas/UserSchema';
 import { ListUser } from "../../../../application/use-cases/user/ListUser";
